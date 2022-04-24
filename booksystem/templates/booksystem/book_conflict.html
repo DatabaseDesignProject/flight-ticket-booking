@@ -1,0 +1,23 @@
+{% extends 'booksystem/base.html' %}
+
+{% block login_display %}
+    <a href="#">Welcome {{ username }} Mr/Ms</a> <!--Use # to avoid jumping-->
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid" style="margin-top: 20px">
+        <div class="alert" style="background-color: white;overflow: hidden"> <!--The excess part is also a white background-->
+            <h1>Dear Passenger</h1>
+            <div id="info_body" style="margin-left: 50px;margin-right: 50px">
+                <p>
+                    You have already booked this flight, please choose another flight, I wish you a happy journey!
+                </p>
+</div>
+
+            <div id="book_btns" align="right">
+                <!--The div content is right-aligned-->
+                <a href="" class="btn btn-danger" style="width: 80px" onclick="history.back();">back</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,89 @@
+{% extends 'booksystem/base.html' %}
+
+{% block login_display %}
+    <a href="#">Welcome {{ username }} Mr/Ms</a> <!--Use # to avoid jumping-->
+{% endblock %}
+
+{% block js %}
+    <script>
+
+        function confirm_info() {
+            var remain_seats = document.getElementById('remain_seats').innerHTML;
+            document.getElementById('book_btns').style.display = "none";
+            if (remain_seats > 0) {
+                document.getElementById('book_success').style.display = "block";
+            } else {
+                document.getElementById('book_failure').style.display = "block";
+            }
+        }
+//ajax refresh the page asynchronously
+        function PostData() {
+            $.ajax({
+                type: "POST",
+                url: "",
+                data: ""
+            });
+            return false; //This sentence is required, otherwise the page will be refreshed
+        }
+
+    </script>
+{% endblock %}
+{% block content %}
+    <div class="container-fluid" style="margin-top: 20px">
+        <div class="alert" style="background-color: white;overflow: hidden"> <!--The excess part is also a white background-->
+            <h1>Dear Passenger</h1>
+            <div id="info_body" style="margin-left: 50px;margin-right: 50px">
+                <p>
+                  You selected flight <strong style="font-size: large"> {{ flight.name }} </strong> ,
+                    There are still tickets left for this flight
+                    <strong id="remain_seats"
+                            style="font-size: xx-large;color: #ff6600;font-style: italic">{{ flight.capacity }}</strong>
+                  open.
+                </p>
+                <table class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th style="text-align: center">Flights</th>
+                        <th style="text-align: center">Departure airport</th>
+                        <th style="text-align: center">Arrival at the airport</th>
+                        <th style="text-align: center">Departure time</th>
+                        <th style="text-align: center">Arrival time</th>
+                        <th style="text-align: center">Price</th>
+                    </tr>
+                    </thead>
+                    <tbody style="text-align: center">
+                    <tr>
+                        <td>{{ flight.name }}</td>
+                        <td>{{ flight.leave_city }}{{ flight.leave_airport }}</td>
+                        <td>{{ flight.arrive_city }}{{ flight.arrive_airport }}</td>
+                        <td>{{ flight.leave_time }}</td>
+                        <td>{{ flight.arrive_time }}</td>
+                        <td>Rs.{{ flight.price }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div id="book_success" style="display: none">
+                    <p style="color: green;font-size: large;font-weight: bold">
+                        You have successfully booked this flight, please keep your flight information safe and have a nice trip!
+                    </p>
+                </div>
+
+                <div id="book_failure" style="display: none">
+                    <p style="color: red;font-size: large;font-weight: bold">
+                        There are no more tickets for this flight, please choose another flight, I wish you a happy journey!
+                    </p>
+                </div>
+
+                <div id="book_btns" align="right">
+                    <!--The div content is right-aligned-->
+                    <form onsubmit="return PostData()" method="post" style="display: inline">
+                        <input class="btn btn-primary" style="width: 80px" value="confirm" type="submit"
+                               onclick="confirm_info()">
+                    </form>
+                    <a href="" class="btn btn-danger" style="width: 80px" onclick="history.back();">back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

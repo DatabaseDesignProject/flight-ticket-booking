@@ -1,0 +1,125 @@
+{% extends 'booksystem/base.html' %}
+{% block login_display %}
+    <a href="#">Welcome Mr/Ms admin</a> <!--Use # to avoid jumping-->
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="container-fluid col-sm-12" style="margin-top: 20px">
+        <div class="col-sm-4">
+            <div class="panel panel-primary">
+                <div class="panel panel-heading">
+                    weekly income
+                </div>
+                <div>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <th style="text-align: center">Numbering</th>
+                        <th style="text-align: center">Week</th>
+                        <th style="text-align: center">Flights</th>
+                        <th style="text-align: center">Income</th>
+                        </thead>
+                        <tbody align="center">
+                        {% for income in week_incomes %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ income.metric }}</td>
+                                <td>{{ income.flight_sum }}</td>
+                                <td>{{ income.income }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="panel panel-primary">
+                <div class="panel panel-heading">
+                    monthly income
+                </div>
+                <div>
+                    <table class="table table-bordered table-striped">
+                       <thead>
+                        <th style="text-align: center">Numbering</th>
+                        <th style="text-align: center">month</th>
+                        <th style="text-align: center">Flights</th>
+                        <th style="text-align: center">Income</th>
+                        </thead>
+                        <tbody align="center">
+                        {% for income in month_incomes %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ income.metric }}</td>
+                                <td>{{ income.flight_sum }}</td>
+                                <td>{{ income.income }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="panel panel-primary">
+                <div class="panel panel-heading">
+                    Annual income
+                </div>
+                <div>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <th style="text-align: center">Numbering</th>
+                        <th style="text-align: center">year</th>
+                        <th style="text-align: center">Flights</th>
+                        <th style="text-align: center">Income</th>
+                        </thead>
+                        <tbody align="center">
+                        {% for income in year_incomes %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ income.metric }}</td>
+                                <td>{{ income.flight_sum }}</td>
+                                <td>{{ income.income }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="book_orders" style="margin-left: 20px;margin-right: 20px">
+            <div class="col-sm-12" style="background-color: white">
+                <h1>Order List</h1>
+                <div>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <th style="text-align: center">Numbering</th>
+                        <th style="text-align: center">Passenger</th>
+                        <th style="text-align: center">Flights</th>
+                        <th style="text-align: center">Alignment</th>
+                        <th style="text-align: center">Departure time</th>
+                        <th style="text-align: center">Tickets</th>
+                        </thead>
+                        <tbody align="center">
+                        {% for order in order_set %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ order.passenger_name }}</td>
+                                <td>{{ order.flight_name }}</td>
+                                <td>{{ order.flight_route }}</td>
+                                <td>{{ order.flight_ltime }}</td>
+                                <td>{{ order.flight_price }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

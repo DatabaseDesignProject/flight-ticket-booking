@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Air ticket management system</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    {#    <link rel="stylesheet" href="../../static/css/bootstrap.min.css">#}
+    {% block style %}
+    {% endblock %}
+    {% block js %}
+    {% endblock %}
+</head>
+<body style="background-color: #f1f1f1">
+<nav class="nav navbar-inverse">
+    <div class="container-fluid">
+        <!--Header -->
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'booksystem:index' %}">CSU Airlines</a>
+        </div>
+        <!--Items -->
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="{% url 'booksystem:result' %}">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Purchase Tickets
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'booksystem:user_info' %}">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Personal Center
+                </a>
+            </li>
+            <li>
+                {% block login_display %} <!--Change the display of this block after the user logs in-->
+                    <a href="{% url 'booksystem:login_user' %}">
+                        <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Login
+                    </a>
+                {% endblock %}
+            </li>
+            <li>
+                <a href="{% url 'booksystem:logout_user' %}">
+                    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>quit
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+{% block content %}
+{% endblock %}
+
+</body>
+</html>
